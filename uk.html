@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CHEEMA TIKTOK AGENCY - Payment</title>
+<style>
+    body {
+        background-color: #000;
+        color: white;
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+    }
+    header {
+        background-color: #222;
+        padding: 20px;
+        font-size: 28px;
+        text-align: center;
+        font-weight: bold;
+        letter-spacing: 2px;
+    }
+    main {
+        padding: 30px 15px;
+        max-width: 600px;
+        margin: auto;
+    }
+    .card {
+        background-color: #111;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
+        margin-bottom: 25px;
+    }
+    select, input, textarea {
+        width: 100%;
+        padding: 10px;
+        margin: 8px 0;
+        border: none;
+        border-radius: 5px;
+        font-size: 16px;
+    }
+    select, input, textarea {
+        background-color: #222;
+        color: white;
+    }
+    input[readonly] {
+        color: #ccc;
+        font-weight: bold;
+        text-align: center;
+    }
+    input[type="submit"] {
+        background-color: white;
+        color: black;
+        cursor: pointer;
+        font-size: 18px;
+        transition: 0.3s;
+    }
+    input[type="submit"]:hover {
+        background-color: #ccc;
+    }
+    .payment-info {
+        font-size: 18px;
+        background-color: #222;
+        padding: 15px;
+        border-radius: 8px;
+        margin-top: 15px;
+        line-height: 1.6;
+    }
+    .payment-info strong {
+        color: white;
+    }
+    footer {
+        background-color: #111;
+        padding: 15px;
+        font-size: 14px;
+        text-align: center;
+        margin-top: 40px;
+        color: #bbb;
+    }
+	#price{
+	width:285px;
+	}
+</style>
+</head>
+<body>
+
+<header>
+    CHEEMA TIKTOK AGENCY
+</header>
+
+<main>
+    <!-- Product Selection -->
+    <div class="card">
+        <h2 style="margin-left:56px;" >SELECT TIKTOK ACCOUNT</h2>
+        <select  id="accountType" onchange="updatePrice()">
+            <option value="">-- Select Account Type --</option>
+            <option value="700">UK TikTok Account</option>
+            <option value="500">Pakistan TikTok Account</option>
+            <option value="800">USA TikTok Account</option>
+            <option value="750">India TikTok Account</option>
+            <option value="900">Canada TikTok Account</option>
+            <option value="950">Australia TikTok Account</option>
+        </select>
+        <input type="text" id="price" placeholder="Price will show here" readonly>
+    </div>
+
+    <!-- Payment Info -->
+    <div class="payment-info">
+        <p>💳 Pay via JazzCash or Easypaisa</p>
+        <p>Number: <strong>0329-2231778</strong></p>
+        <p>Account Name: <strong>CHEEMA TIKTOK AGENCY</strong></p>
+        <p>After sending payment, please fill the form below.</p>
+    </div>
+
+    <!-- Payment Form -->
+    <div class="card">
+        <h2>Submit Payment Details</h2>
+        <form action="https://formspree.io/f/mwpqryol" method="POST">
+            <input style="width:285px;" type="email" name="email" placeholder="cheematiktokagency@gmail.com" required>
+            <input style="width:285px;" type="text" name="transaction_id" placeholder="Transaction ID" required>
+            <textarea style="width:285px;" name="message" placeholder="Your Order Details" required></textarea>
+            <input style="width:285px;" type="hidden" name="_subject" value="New Payment from CHEEMA TIKTOK AGENCY">
+            <input style="width:305px;" type="submit" value="Send Payment Details">
+        </form>
+    </div>
+</main>
+
+<footer>
+    &copy; 2025 CHEEMA TIKTOK AGENCY | All Rights Reserved
+</footer>
+
+<script>
+function updatePrice() {
+    let priceField = document.getElementById("price");
+    let accountType = document.getElementById("accountType").value;
+    if (accountType) {
+        priceField.value = accountType + " PKR";
+    } else {
+        priceField.value = "";
+    }
+}
+</script>
+
+</body>
+</html>

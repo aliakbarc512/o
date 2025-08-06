@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Place Order - CHEEMA TIKTOK AGENCY</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #0d0d0d;
+        color: white;
+        margin: 0;
+        padding: 0;
+    }
+    header {
+        background: #000;
+        text-align: center;
+        padding: 15px;
+        font-size: 22px;
+        font-weight: bold;
+        color: #00e5ff;
+        text-shadow: 0 0 10px #00e5ff;
+        border-bottom: 2px solid #00e5ff;
+    }
+    .container {
+        max-width: 450px;
+        margin: 30px auto;
+        background: #151515;
+        padding: 20px;
+        border-radius: 12px;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+    }
+    h2 {
+        text-align: center;
+        color: #00e5ff;
+        margin-bottom: 20px;
+        text-shadow: 0 0 8px #00e5ff;
+    }
+    label {
+        display: block;
+        margin-top: 15px;
+        font-weight: bold;
+        color: #ddd;
+    }
+    select, input {
+        width: 100%;
+        padding: 10px;
+        margin-top: 6px;
+        border-radius: 8px;
+        border: none;
+        background: #1f1f1f;
+        color: white;
+        font-size: 15px;
+        box-shadow: inset 0 0 5px rgba(0,0,0,0.5);
+    }
+    select:focus, input:focus {
+        outline: none;
+        border: 1px solid #00e5ff;
+        box-shadow: 0 0 5px #00e5ff;
+    }
+    .info {
+        font-size: 12px;
+        color: #aaa;
+        margin-top: 4px;
+		
+    }
+    button {
+        width: 100%;
+        padding: 12px;
+        margin-top: 20px;
+        background: linear-gradient(90deg, #00bfff, #00e5ff);
+        color: white;
+        border: none;
+        border-radius: 8px;
+        font-size: 16px;
+        cursor: pointer;
+        font-weight: bold;
+        box-shadow: 0 0 10px rgba(0,229,255,0.6);
+    }
+    button:hover {
+        background: linear-gradient(90deg, #009acd, #00cfff);
+    }
+    /* WhatsApp Floating Button */
+    .whatsapp-btn {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        background: #25d366;
+        color: white;
+        border-radius: 50%;
+        padding: 14px;
+        font-size: 26px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        text-decoration: none;
+        z-index: 999;
+    }
+</style>
+</head>
+<body>
+
+<header>CHEEMA TIKTOK AGENCY</header>
+
+<div class="container">
+    <h2>New Order</h2>
+
+    <label for="category">Category</label>
+    <select id="category" onchange="loadServices()">
+        <option value="">-- Select Category --</option>
+        <option value="likes">TikTok Likes Non Drop [ 1 Minute Start ]</option>
+        <option value="views">TikTok Views [ Instant Start ]</option>
+        <option value="followers">TikTok Followers [ Fast Delivery ]</option>
+    </select>
+
+    <label for="service">Service</label>
+    <select id="service" onchange="updateRate()">
+        <option value="">-- Select Service --</option>
+    </select>
+
+    <label for="link">Link</label>
+    <input style="width:315px;" type="url" id="link" placeholder="https://www.tiktok.com/..." required>
+
+    <label for="amount">Amount</label>
+    <input style="width:315px;" type="number" id="amount" placeholder="Enter Quantity" min="10" oninput="calculateCharge()" required>
+    <div class="info" id="limit-info"></div>
+
+    <label>Average Time</label>
+    <input style="width:315px;" type="text" id="time" disabled>
+
+    <label>Charge (PKR)</label>
+    <input style="width:315px;" type="text" id="charge" disabled>
+
+    <button type="submit">Submit</button>
+</div>
+
+<!-- WhatsApp Floating Button -->
+<a href="https://chat.whatsapp.com/HvvORT2wfS407VmxQcCohq" class="whatsapp-btn" target="_blank">💬</a>
+
+<script>
+    // Example Services Data
+    const servicesData = {
+        likes: [
+            {id: 6005, name: "TikTok Likes [ Max 500K ]", rate: 0.015, min: 10, max: 500000, time: "12 minutes"},
+            {id: 6006, name: "TikTok Likes [ Max 100K ]", rate: 0.02, min: 10, max: 100000, time: "10 minutes"}
+        ],
+        views: [
+            {id: 7001, name: "TikTok Views [ Max 1M ]", rate: 0.005, min: 100, max: 1000000, time: "5 minutes"}
+        ],
+        followers: [
+            {id: 8001, name: "TikTok Followers [ Max 50K ]", rate: 0.5, min: 10, max: 50000, time: "1 hour"}
+        ]
+    };
+
+    let selectedRate = 0;
+
+    function loadServices() {
+        const category = document.getElementById("category").value;
+        const serviceSelect = document.getElementById("service");
+        serviceSelect.innerHTML = '<option value="">-- Select Service --</option>';
+
+        if (servicesData[category]) {
+            servicesData[category].forEach(service => {
+                const option = document.createElement("option");
+                option.value = service.id;
+                option.textContent = `${service.id} - ${service.name}`;
+                serviceSelect.appendChild(option);
+            });
+        }
+    }
+
+    function updateRate() {
+        const category = document.getElementById("category").value;
+        const serviceId = document.getElementById("service").value;
+        const limitInfo = document.getElementById("limit-info");
+        const timeInput = document.getElementById("time");
+        
+        const service = servicesData[category]?.find(s => s.id == serviceId);
+        if (service) {
+            selectedRate = service.rate;
+            limitInfo.textContent = `Min: ${service.min} - Max: ${service.max}`;
+            timeInput.value = service.time;
+        }
+        calculateCharge();
+    }
+
+    function calculateCharge() {
+        const amount = parseInt(document.getElementById("amount").value) || 0;
+        const chargeInput = document.getElementById("charge");
+        if (selectedRate > 0 && amount > 0) {
+            const total = amount * selectedRate;
+            chargeInput.value = total.toFixed(3) + " PKR";
+        } else {
+            chargeInput.value = "";
+        }
+    }
+</script>
+
+</body>
+</html>

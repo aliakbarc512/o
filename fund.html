@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Add Fund - CHEEMA TIKTOK AGENCY</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+  .form-section {
+  max-width: 500px;
+  margin: 60px auto;
+  background: #111;
+  padding: 30px;
+  border-radius: 10px;
+  text-align: left;
+}
+.form-section h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+.fund-form input,
+.fund-form select {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0 20px;
+  border: none;
+  border-radius: 5px;
+}
+.fund-form input[type=submit] {
+  background: #1db954;
+  color: #fff;
+  cursor: pointer;
+}
+.fund-form input[type=submit]:hover {
+  background: #17a44c;
+}
+.info {
+  font-size: 14px;
+  color: #ffcb05;
+  margin-top: 20px;
+  text-align: center;
+}
+
+  </style>
+</head>
+<body>
+  <header>
+    <h1>CHEEMA TIKTOK AGENCY</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="addfund.html">Add Fund</a>
+      <a href="#">Order Now</a>
+    </nav>
+  </header>
+
+  <section class="form-section">
+    <h2>Add Funds to Your Wallet</h2>
+    <p>Transfer money to <strong>03292231778</strong> (Easypaisa/JazzCash) and fill the form below:</p>
+    <form class="fund-form">
+      <label for="amount">Amount (Minimum 10 Rs):</label><br />
+      <input type="number" id="amount" name="amount" min="10" required /><br />
+
+      <label for="method">Payment Method:</label><br />
+      <select id="method" name="method" required>
+        <option value="">Select</option>
+        <option value="Easypaisa">Easypaisa</option>
+        <option value="JazzCash">JazzCash</option>
+      </select><br />
+
+      <label for="transaction">Transaction ID:</label><br />
+      <input type="text" id="transaction" name="transaction" required /><br />
+
+      <input type="submit" value="Submit Request" />
+    </form>
+    <p class="info">⚠️ Your request will be verified manually within a few minutes.</p>
+  </section>
+
+  <footer>
+    <p>© 2025 CHEEMA TIKTOK AGENCY</p>
+    <p>Payment via Easypaisa / JazzCash: 03292231778</p>
+  </footer>
+</body>
+</html>
